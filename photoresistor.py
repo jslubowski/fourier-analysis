@@ -6,15 +6,15 @@ from matplotlib.ticker import FormatStrFormatter
 data = []
 data2 = []
 
-with open('strobe1_4.3kHz.txt') as file: #write your file here
+with open('lamp_4.8kHz.txt') as file: #write your file here
     print(file.readline())
     for line in file:
         data.append(int(line.replace('\n','')))
 file.close()
 
-
+Fs = 4800 #number of samples per seconds
 for i in range(len(data)):
-    data2.append(0.000273 * (i))
+    data2.append((1/Fs)* (i))
 plt.figure(1) #obvious
 plt.plot(data2, data)
 plt.xlabel('czas')
@@ -26,7 +26,7 @@ y = np.array(data)
 t = np.array(data2)
 
 
-Fs = 4300 #number of samples per seconds
+
 T = 1/Fs
 
 N = t.size
